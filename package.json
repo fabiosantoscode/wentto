@@ -1,6 +1,6 @@
 {
   "name": "wentto",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "lib/wentto.js",
   "description": "GOTO in Javascripts. Considered harmful.",
   "homepage": "user/repo",
