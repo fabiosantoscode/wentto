@@ -32,6 +32,9 @@ Pass it an array of functions. Make sure all of them accept the function "go" as
 ### go(index)
 Go to a function. The `index` argument 
 
+### go(label)
+Go to a function which has a name. See the example below, "naming your goto labels", to see how to give your functions a name.
+
 ## Examples
 ### achieving a loop
 ```javascript
@@ -76,7 +79,9 @@ var dontGoFar = wentto([
 ```
 
 ### naming your goto labels
-It can become complicated to deal with a large wentto chain. Here's how you can give names to your functions
+It can become complicated to deal with numeric indices in a large wentto chain. 
+
+To give names to your functions, just wrap them in a pair (`[name, yourFunction]`). You don't have to give a name to every function.
 
 ```javascript
 var myFunc = wentto([
