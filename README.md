@@ -10,8 +10,8 @@ var wentto = require('wentto');
 
 var doSomethingComplicated = wentto([
     function preCheck(go) {
-        if (something) { go('fail') }
-        else if (somethingElse) { go('fail') }
+        if (something) { return go('fail') }
+        else if (somethingElse) { return go('fail') }
     },
     function doTheThing(go) {
         // Do the thing...
@@ -29,10 +29,10 @@ Pass it an array of functions. Make sure all of them accept the function "go" as
 
 `wentto` returns a function. That function will execute `func0`, then `func1`, etc. If one of these functions returns `go(<index>)`, execution continues at `func<index>`.
 
-### go(index)
+### return go(index)
 Go to a function. The `index` argument 
 
-### go(label)
+### return go(label)
 Go to a function which has a name. See the example below, "naming your goto labels", to see how to give your functions a name.
 
 ## Examples
@@ -85,7 +85,7 @@ To give names to your functions, just wrap them in a pair (`[name, yourFunction]
 
 ```javascript
 var myFunc = wentto([
-    function (go) { if (something) go('fail') },
+    function (go) { if (something) return go('fail') },
     ['fail', function (go) { throw something }]
 ])
 ```
