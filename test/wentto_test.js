@@ -67,5 +67,16 @@ exports.wentto = {
 
         t.deepEqual(arr, [1, 2, 3])
         t.done()
+    },
+    'wentTo([["funcXName", funcX]])': function(t) {
+        var arr = []
+        wentTo([
+            ['one', function (go) { arr.push(1); return go('three'); }],
+            ['two', function () { arr.push(3); return null; }],
+            ['three', function (go) { arr.push(2); return go('two'); }]
+        ])();
+
+        t.deepEqual(arr, [1, 2, 3])
+        t.done()
     }
 };
