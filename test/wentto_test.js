@@ -78,5 +78,16 @@ exports.wentto = {
 
         t.deepEqual(arr, [1, 2, 3])
         t.done()
+    },
+    'wentTo([["funcXName", funcX]]) (not all have labels)': function(t) {
+        var arr = []
+        wentTo([
+            function (go) { arr.push(1); return go('three'); },
+            ['two', function () { arr.push(3); return null; }],
+            ['three', function (go) { arr.push(2); return go('two'); }]
+        ])();
+
+        t.deepEqual(arr, [1, 2, 3])
+        t.done()
     }
 };

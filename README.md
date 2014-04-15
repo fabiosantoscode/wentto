@@ -10,15 +10,15 @@ var wentto = require('wentto');
 
 var doSomethingComplicated = wentto([
     function preCheck(go) {
-        if (something) { go(2 /* fail */) }
-        else if (somethingElse) { go(2 /*fail*/) }
+        if (something) { go('fail') }
+        else if (somethingElse) { go('fail') }
     },
     function doTheThing(go) {
         // Do the thing...
     },
-    function fail(go) {
+    ['fail', function fail(go) {
         // Handle errors here
-    }
+    }]
 ])
 ```
 
@@ -52,7 +52,9 @@ doSomethingUntil();
 a // -> 3
 ```
 
-### using parameters (just add them to every function after the "go" param)
+### accepting parameters
+just add them to every function after the "go" param
+
 ```javascript
 var justSum = wentto([
     function (go, a, b) {
@@ -62,6 +64,27 @@ var justSum = wentto([
 
 justSum(1, 2) // -> 3
 ```
+
+### returning early
+Just return anything which is not `undefined` or `go(somewhere)`
+
+```javascript
+var dontGoFar = wentto([
+    function (go) { return 42 },
+    function neverExecuted(go) {}
+])
+```
+
+### naming your goto labels
+It can become complicated to deal with a large wentto chain. Here's how you can give names to your functions
+
+```javascript
+var myFunc = wentto([
+    function (go) { if (something) go('fail') },
+    ['fail', function (go) { throw something }]
+])
+```
+
 
 ## How does it work?
 It's just a for loop which executes the input functions one by one. `go` is actually a class which wraps the index of the function you want to go to. If one of the functions returns an instance of `go`, the loop variable is changed (`i = newIndex + 1; continue;`).
