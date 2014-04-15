@@ -99,6 +99,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+ - 0.0.2 Adds the possibility of naming each function in the `wentto()` chain.
  - 0.0.1 Implemented core functionality: passing an array of functions and using go() to goto other functions.
 
 ## License
