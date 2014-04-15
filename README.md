@@ -71,7 +71,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
- - 0.0.0 Implemented core functionality: passing an array of functions and using go() to goto other functions.
+ - 0.0.1 Implemented core functionality: passing an array of functions and using go() to goto other functions.
 
 ## License
 Copyright (c) 2014 Fábio Santos. Licensed under the MIT license.
