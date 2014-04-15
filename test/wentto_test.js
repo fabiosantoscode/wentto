@@ -102,5 +102,23 @@ exports.wentto = {
 
         t.deepEqual(arr, [1, 2, 3])
         t.done()
+    },
+    'adding arguments to the function we\'re calling, like a trampoline': function(t) {
+        var arr = []
+        wentTo([
+            ['start', function (go) {
+                if (arr.length < 3) {
+                    return go('pusher', arr.length + 1)
+                } else {
+                    return arr;
+                }
+            }],
+            ['pusher', function (go, pushee) {
+                arr.push(pushee);
+                return go('start');
+            }]
+        ])();
+        t.deepEqual(arr, [1, 2, 3]);
+        t.done()
     }
 };
