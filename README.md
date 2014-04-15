@@ -30,7 +30,7 @@ Pass it an array of functions. Make sure all of them accept the function "go" as
 `wentto` returns a function. That function will execute `func0`, then `func1`, etc. If one of these functions returns `go(<index>)`, execution continues at `func<index>`.
 
 ### return go(index)
-Go to a function. The `index` argument 
+Go to a function. The `index` argument is the index of the function in the array you passed to `wentto()`. So `return go(0)` to go back to the first function, `return go(2)` to go to the second function.
 
 ### return go(label)
 Go to a function which has a name. See the example below, "naming your goto labels", to see how to give your functions a name.

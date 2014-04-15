@@ -68,6 +68,19 @@ exports.wentto = {
         t.deepEqual(arr, [1, 2, 3])
         t.done()
     },
+    'going to the same function': function (t) {
+        var a = 0;
+        wentTo([
+            function (go) {
+                a += 1;
+                if (a < 3) {
+                    return go(0);
+                }
+            }
+        ])();
+        t.equal(a, 3)
+        t.done()
+    },
     'wentTo([["funcXName", funcX]])': function(t) {
         var arr = []
         wentTo([
